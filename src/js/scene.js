@@ -42,15 +42,15 @@ scene.background = textureLoader.load(stars);
 
 const geometry = new THREE.SphereGeometry(1);
 const material = new THREE.MeshNormalMaterial();
-const mesh = new THREE.InstancedMesh(geometry, material, 64);
+const mesh = new THREE.InstancedMesh(geometry, material, 216);
 scene.add(mesh);
 
 const dummy = new THREE.Object3D();
 let aux = 0
 const n = 15;
-for(let i = -2; i < 2; i++) {
-    for(let j = -2; j < 2; j++) {
-        for(let k = -2; k < 2; k++) {
+for(let i = -3; i < 3; i++) {
+    for(let j = -3; j < 3; j++) {
+        for(let k = -3; k < 3; k++) {
             dummy.position.x = i * n + Math.random() * 5;
             dummy.position.y = j * n + Math.random() * 5;
             dummy.position.z = k * n + Math.random() * 5;
@@ -67,7 +67,7 @@ function getTwoUniqueNumbers() {
     let numberSet = new Set();
   
     while (numberSet.size < 2) {
-        let randomNumber = Math.floor(Math.random() * 64);
+        let randomNumber = Math.floor(Math.random() * 216);
         numberSet.add(randomNumber);
     }
     
@@ -82,7 +82,7 @@ let position = new THREE.Vector3();
 let geometryl;
 let materiall = new THREE.LineBasicMaterial({
     color: 0xff0000,
-    linewidth: 10
+    linewidth: 1
 });
 
 
