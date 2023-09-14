@@ -31378,6 +31378,7 @@ var _helpers = require("./objects/helpers");
 var _mousePosition = require("./events/mousePosition");
 var _camera = require("./camera");
 var _render = require("./render");
+var _events = require("../js/events");
 let step = 0;
 function animation(time) {
     step += (0, _gui.guiOptions).speed;
@@ -31389,7 +31390,7 @@ function animation(time) {
     (0, _render.renderer).render((0, _scene.scene), (0, _camera.camera));
 }
 
-},{"./scene":"dzO8i","./objects/sphere":"5OY5d","./rayCaster":"hFDdK","./utils/gui":"bG3KU","./objects/helpers":"dzeVr","./events/mousePosition":"cLkaG","./camera":"8qC5o","./render":"6Nkx6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dzO8i":[function(require,module,exports) {
+},{"./scene":"dzO8i","./objects/sphere":"5OY5d","./rayCaster":"hFDdK","./utils/gui":"bG3KU","./objects/helpers":"dzeVr","./events/mousePosition":"cLkaG","./camera":"8qC5o","./render":"6Nkx6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../js/events":"jupUu"}],"dzO8i":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "scene", ()=>scene);
@@ -31398,6 +31399,7 @@ var _plane = require("./objects/plane");
 var _sphere = require("./objects/sphere");
 var _box2 = require("./objects/box2");
 var _lights = require("./objects/lights");
+// import { skySphere } from './objects/skySphere'
 var _layer = require("./objects/layer");
 var _layer2 = require("./objects/layer2");
 var _helpers = require("./objects/helpers");
@@ -31417,6 +31419,7 @@ scene.add((0, _lights.spotLight));
 // scene.add(layer)
 // scene.add(layer2)
 // scene.add(box2)
+// scene.add(skySphere);
 // scene.fog = new FogExp2(0xFFFFFF, 1)
 // scene.fog = new FogExp2(0xFFFFFF, 0, 100)
 const textureLoader = new (0, _three.TextureLoader)();
@@ -31478,7 +31481,7 @@ for(let i = 0; i < 100; i++){
     scene.add(line);
 }
 
-},{"three":"ktPTu","./objects/plane":"hLqfz","./objects/sphere":"5OY5d","./objects/box2":"hUhS2","./objects/lights":"eLDCo","./objects/layer":"hytg7","./objects/layer2":"5bh6q","./objects/helpers":"dzeVr","../assets/stars.jpg":"bwd0y","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hLqfz":[function(require,module,exports) {
+},{"three":"ktPTu","./objects/plane":"hLqfz","./objects/sphere":"5OY5d","./objects/lights":"eLDCo","./objects/helpers":"dzeVr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./objects/box2":"hUhS2","./objects/layer":"hytg7","./objects/layer2":"5bh6q","../assets/stars.jpg":"bwd0y"}],"hLqfz":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "plane", ()=>plane);
@@ -31506,7 +31509,40 @@ const sphere = new (0, _three.Mesh)(sphereGeometry, sphereMaterial);
 sphere.position.set(-10, 10, 0);
 sphere.castShadow = true;
 
-},{"three":"ktPTu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hUhS2":[function(require,module,exports) {
+},{"three":"ktPTu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eLDCo":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ambientLight", ()=>ambientLight);
+parcelHelpers.export(exports, "directionalLight", ()=>directionalLight);
+parcelHelpers.export(exports, "spotLight", ()=>spotLight);
+var _three = require("three");
+const ambientLight = new (0, _three.AmbientLight)(0x333333);
+const directionalLight = new (0, _three.DirectionalLight)(0xffffff, 0.8);
+directionalLight.position.set(-30, 50, 0);
+directionalLight.castShadow = true;
+directionalLight.shadow.camera.bottom = -12;
+const spotLight = new (0, _three.SpotLight)(0xffffff);
+spotLight.position.set(-100, 100, 0);
+spotLight.castShadow = true;
+spotLight.angle = 0.2;
+
+},{"three":"ktPTu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dzeVr":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "axexHelper", ()=>axexHelper);
+parcelHelpers.export(exports, "gridHelper", ()=>gridHelper);
+parcelHelpers.export(exports, "dLightShadowHelper", ()=>dLightShadowHelper);
+parcelHelpers.export(exports, "sLightHelper", ()=>sLightHelper);
+parcelHelpers.export(exports, "dLightHelper", ()=>dLightHelper);
+var _three = require("three");
+var _lights = require("./lights");
+const axexHelper = new (0, _three.AxesHelper)(3);
+const gridHelper = new (0, _three.GridHelper)(30);
+const dLightShadowHelper = new (0, _three.CameraHelper)((0, _lights.directionalLight).shadow.camera); // ?
+const sLightHelper = new (0, _three.SpotLightHelper)((0, _lights.spotLight));
+const dLightHelper = new (0, _three.DirectionalLightHelper)((0, _lights.directionalLight), 5);
+
+},{"three":"ktPTu","./lights":"eLDCo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hUhS2":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "box2", ()=>box2);
@@ -31559,24 +31595,7 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"eLDCo":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "ambientLight", ()=>ambientLight);
-parcelHelpers.export(exports, "directionalLight", ()=>directionalLight);
-parcelHelpers.export(exports, "spotLight", ()=>spotLight);
-var _three = require("three");
-const ambientLight = new (0, _three.AmbientLight)(0x333333);
-const directionalLight = new (0, _three.DirectionalLight)(0xffffff, 0.8);
-directionalLight.position.set(-30, 50, 0);
-directionalLight.castShadow = true;
-directionalLight.shadow.camera.bottom = -12;
-const spotLight = new (0, _three.SpotLight)(0xffffff);
-spotLight.position.set(-100, 100, 0);
-spotLight.castShadow = true;
-spotLight.angle = 0.2;
-
-},{"three":"ktPTu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hytg7":[function(require,module,exports) {
+},{}],"hytg7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "layer", ()=>layer);
@@ -31610,23 +31629,7 @@ for(let i = 0; i < 10; i++)for(let j = 0; j < 10; j++){
     layer2.setMatrixAt(i * 10 + j, dummy.matrix);
 }
 
-},{"three":"ktPTu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dzeVr":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "axexHelper", ()=>axexHelper);
-parcelHelpers.export(exports, "gridHelper", ()=>gridHelper);
-parcelHelpers.export(exports, "dLightShadowHelper", ()=>dLightShadowHelper);
-parcelHelpers.export(exports, "sLightHelper", ()=>sLightHelper);
-parcelHelpers.export(exports, "dLightHelper", ()=>dLightHelper);
-var _three = require("three");
-var _lights = require("./lights");
-const axexHelper = new (0, _three.AxesHelper)(3);
-const gridHelper = new (0, _three.GridHelper)(30);
-const dLightShadowHelper = new (0, _three.CameraHelper)((0, _lights.directionalLight).shadow.camera); // ?
-const sLightHelper = new (0, _three.SpotLightHelper)((0, _lights.spotLight));
-const dLightHelper = new (0, _three.DirectionalLightHelper)((0, _lights.directionalLight), 5);
-
-},{"three":"ktPTu","./lights":"eLDCo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bwd0y":[function(require,module,exports) {
+},{"three":"ktPTu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bwd0y":[function(require,module,exports) {
 module.exports = require("a064f5eb49e93be2").getBundleURL("10Mjw") + "stars.677769fa.jpg" + "?" + Date.now();
 
 },{"a064f5eb49e93be2":"lgJ39"}],"hFDdK":[function(require,module,exports) {
@@ -33972,6 +33975,19 @@ window.addEventListener("mousemove", (e)=>{
     mousePosition.y = -(e.clientY / window.innerHeight) * 2 + 1;
 });
 
-},{"three":"ktPTu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["gEwwu","1SICI"], "1SICI", "parcelRequire01fd")
+},{"three":"ktPTu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jupUu":[function(require,module,exports) {
+var _mousePosition = require("./mousePosition");
+var _resizeWindow = require("./resizeWindow");
+
+},{"./mousePosition":"cLkaG","./resizeWindow":"avGsp"}],"avGsp":[function(require,module,exports) {
+var _camera = require("../camera");
+var _render = require("../render");
+window.addEventListener("resize", ()=>{
+    (0, _camera.camera).aspect = window.innerWidth / window.innerHeight;
+    (0, _camera.camera).updateProjectionMatrix();
+    (0, _render.renderer).setSize(window.innerWidth, window.innerHeight);
+});
+
+},{"../camera":"8qC5o","../render":"6Nkx6"}]},["gEwwu","1SICI"], "1SICI", "parcelRequire01fd")
 
 //# sourceMappingURL=index.18dbc454.js.map
