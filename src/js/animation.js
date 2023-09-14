@@ -6,6 +6,7 @@ import { sLightHelper } from './objects/helpers';
 import { mousePosition } from './events/mousePosition';
 import { camera } from './camera';
 import { renderer } from './render';
+import '../js/events' 
 
 let step = 0;
 

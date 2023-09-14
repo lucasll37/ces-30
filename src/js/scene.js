@@ -4,6 +4,7 @@ import { plane } from './objects/plane';
 import { sphere } from './objects/sphere';
 import { box2 } from './objects/box2';
 import { ambientLight, directionalLight, spotLight } from './objects/lights'
+// import { skySphere } from './objects/skySphere'
 import { layer } from './objects/layer'
 import { layer2 } from './objects/layer2'
 import { axexHelper, gridHelper, dLightHelper, dLightShadowHelper, sLightHelper } from './objects/helpers';
@@ -24,6 +25,7 @@ scene.add(spotLight)
 // scene.add(layer)
 // scene.add(layer2)
 // scene.add(box2)
+// scene.add(skySphere);
 
 // scene.fog = new FogExp2(0xFFFFFF, 1)
 // scene.fog = new FogExp2(0xFFFFFF, 0, 100)
