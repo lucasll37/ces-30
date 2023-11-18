@@ -31385,28 +31385,27 @@ var _events = require("../js/events");
 let slider;
 let valor;
 let valorNumerico;
-async function hold(segundos) {
+function hold(segundos) {
     return new Promise((resolve)=>{
         setTimeout(resolve, segundos * 3000);
     });
 }
 async function dfs(vertex) {
-    slider = document.getElementById("speedControl");
-    valor = slider.value;
-    valorNumerico = parseInt(valor, 10);
+    const slider = document.getElementById("speedControl");
+    const valor = slider.value;
+    const valorNumerico = parseInt(valor, 10);
     for (const edge of (0, _edges.edges)[vertex])if (edge.line.material.color.getHex() === 0x2e2e2e) {
-        // console.log(`VERTICE ${vertex} -> ${edge.to}`);
+        console.log(`VERTICE ${vertex} -> ${edge.to}`);
         edge.line.material.color.set(0xffffff);
         edge.line.material.linewidth = 10;
         (0, _render.renderer).render((0, _scene.scene), (0, _camera.camera));
         await hold(1 / valorNumerico);
-        dfs(edge.to);
+        await dfs(edge.to);
     }
 }
 async function animation(time) {
-    for(i = 0; i < 216; i++)// console.log(i)
-    await dfs(i);
-    // await dfs(1)
+    for(i = 0; i < 512; i++)await dfs(i);
+    // dfs(1)
     // rayCaster.setFromCamera(mousePosition, camera);
     // const intersects = rayCaster.intersectObjects(scene.children);
     // console.log(intersects)
