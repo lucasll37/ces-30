@@ -31395,7 +31395,7 @@ async function dfs(vertex) {
     valor = slider.value;
     valorNumerico = parseInt(valor, 10);
     for (const edge of (0, _edges.edges)[vertex])if (edge.line.material.color.getHex() === 0x2e2e2e) {
-        console.log(`VERTICE ${vertex} -> ${edge.to}`);
+        // console.log(`VERTICE ${vertex} -> ${edge.to}`);
         edge.line.material.color.set(0xffffff);
         edge.line.material.linewidth = 10;
         (0, _render.renderer).render((0, _scene.scene), (0, _camera.camera));
@@ -31403,8 +31403,10 @@ async function dfs(vertex) {
         dfs(edge.to);
     }
 }
-function animation(time) {
-    dfs(1);
+async function animation(time) {
+    for(i = 0; i < 216; i++)// console.log(i)
+    await dfs(i);
+    // await dfs(1)
     // rayCaster.setFromCamera(mousePosition, camera);
     // const intersects = rayCaster.intersectObjects(scene.children);
     // console.log(intersects)
@@ -31468,12 +31470,12 @@ parcelHelpers.export(exports, "vertex", ()=>vertex);
 var _three = require("three");
 const vertexGeometry = new (0, _three.SphereGeometry)(1);
 const vertexMaterial = new (0, _three.MeshNormalMaterial)();
-const vertex = new (0, _three.InstancedMesh)(vertexGeometry, vertexMaterial, 216);
+const vertex = new (0, _three.InstancedMesh)(vertexGeometry, vertexMaterial, 512);
 const temp = new (0, _three.Object3D)();
 let aux = 0;
 const n = 15;
-for(let i = -3; i < 3; i++){
-    for(let j = -3; j < 3; j++)for(let k = -3; k < 3; k++){
+for(let i = -4; i < 4; i++){
+    for(let j = -4; j < 4; j++)for(let k = -4; k < 4; k++){
         temp.position.x = i * n + Math.random() * 5;
         temp.position.y = j * n + Math.random() * 5;
         temp.position.z = k * n + Math.random() * 5;
@@ -31493,7 +31495,7 @@ var _three = require("three");
 function getTwoUniqueNumbers() {
     let numberSet = new Set();
     while(numberSet.size < 2){
-        let randomNumber = Math.floor(Math.random() * 216);
+        let randomNumber = Math.floor(Math.random() * 512);
         numberSet.add(randomNumber);
     }
     return [
@@ -31509,8 +31511,8 @@ let geometryEdge;
 let materialEdge;
 const edges = new Map();
 const uniqueEdges = new Array();
-for(let i = 0; i < 216; i++)edges[i] = Array();
-for(let i = 0; i < 100; i++){
+for(let i = 0; i < 512; i++)edges[i] = Array();
+for(let i = 0; i < 300; i++){
     points = [];
     const [a, b] = getTwoUniqueNumbers();
     (0, _vertexJs.vertex).getMatrixAt(a, matrix1);
