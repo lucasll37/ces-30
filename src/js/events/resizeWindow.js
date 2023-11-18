@@ -2,7 +2,11 @@ import { camera } from '../camera';
 import { renderer } from '../render';
 
 window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
+
+    const divScene = document.getElementById('scene');
+
+
+    camera.aspect = divScene.clientWidth / divScene.clientHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight)
+    renderer.setSize(divScene.clientWidth, divScene.clientHeight)
 })

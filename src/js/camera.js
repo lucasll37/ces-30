@@ -1,10 +1,12 @@
 import { PerspectiveCamera } from "three";
 
+const divScene = document.getElementById('scene');
+
 export const camera = new PerspectiveCamera(
 	75,
-	window.innerWidth / window.innerHeight,
+	divScene.clientWidth / divScene.clientHeight,
 	0.01,
 	1000
 );
 	
-camera.position.set(-10, 30, 30)
+camera.position.set(35, 40, 80)

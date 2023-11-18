@@ -18,6 +18,7 @@
     "parcel": "^2.9.3"
   },
   "dependencies": {
+    "ace-builds": "^1.31.2",
     "dat.gui": "^0.7.9",
     "three": "^0.156.0"
   }

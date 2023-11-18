@@ -1,8 +1,8 @@
 import { WebGLRenderer } from 'three';
 
 export const renderer = new WebGLRenderer( { antialias: true } );
-renderer.setSize( window.innerWidth, window.innerHeight );
+const divScene = document.getElementById('scene');
+
+renderer.setSize(divScene.clientWidth, divScene.clientHeight);
 renderer.shadowMap.enabled = true;
-
-
-document.body.appendChild( renderer.domElement );
+divScene.appendChild( renderer.domElement );
