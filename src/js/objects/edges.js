@@ -12,7 +12,7 @@ function getTwoUniqueNumbers() {
 let numberSet = new Set();
 
 while (numberSet.size < 2) {
-    let randomNumber = Math.floor(Math.random() * 216);
+    let randomNumber = Math.floor(Math.random() * 512);
     numberSet.add(randomNumber);
 }
 
@@ -31,11 +31,11 @@ let materialEdge
 export const edges = new Map();
 export const uniqueEdges = new Array();
 
-for(let i = 0; i < 216; i++) {
+for(let i = 0; i < 512; i++) {
     edges[i] = Array();
 }
 
-for(let i = 0; i < 100; i++) {
+for(let i = 0; i < 300; i++) {
     points = []
     const [a, b] = getTwoUniqueNumbers();
 
