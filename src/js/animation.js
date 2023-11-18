@@ -12,7 +12,7 @@ let slider
 let valor
 let valorNumerico
 
-async function hold(segundos) {
+function hold(segundos) {
     return new Promise(resolve => {
         setTimeout(resolve, segundos * 3000);
     });
@@ -20,14 +20,14 @@ async function hold(segundos) {
 
 async function dfs(vertex) {
 
-    slider = document.getElementById('speedControl');
-    valor = slider.value;
-    valorNumerico = parseInt(valor, 10);
+    const slider = document.getElementById('speedControl');
+    const valor = slider.value;
+    const valorNumerico = parseInt(valor, 10);
 
     for (const edge of edges[vertex]) {
         if (edge.line.material.color.getHex() === 0x2e2e2e) {
 
-            // console.log(`VERTICE ${vertex} -> ${edge.to}`);
+            console.log(`VERTICE ${vertex} -> ${edge.to}`);
             
             edge.line.material.color.set(0xffffff);
             edge.line.material.linewidth = 10;
@@ -35,8 +35,7 @@ async function dfs(vertex) {
             renderer.render(scene, camera);
             await hold(1/valorNumerico);
 
-
-            dfs(edge.to);
+            await dfs(edge.to);
         }
     }
 }
@@ -44,13 +43,8 @@ async function dfs(vertex) {
 
 
 export async function animation( time ) {
-	
-    for(i = 0; i < 216; i++) {
-        // console.log(i)
-	    await dfs(i)
-    }
 
-    // await dfs(1)
+    dfs(1)
 
 
 	// rayCaster.setFromCamera(mousePosition, camera);
