@@ -30,7 +30,7 @@ async function dfs(vertex) {
             console.log(`VERTICE ${vertex} -> ${edge.to}`);
             
             edge.line.material.color.set(0xffffff);
-            edge.line.material.linewidth = 10;
+            edge.line.material.linewidth = 1;
 
             renderer.render(scene, camera);
             await hold(1/valorNumerico);
