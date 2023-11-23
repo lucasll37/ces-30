@@ -1,6 +1,7 @@
 import { editor } from '../utils/aceEditor';
 
-export let validCode = false;
+export let validCode = true;
+// export let validCode = false;
 export let play = false;
 export let speed = 1000;
 export let dijkstra;
