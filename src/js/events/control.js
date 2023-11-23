@@ -12,13 +12,9 @@ document.getElementById('executeButton').addEventListener('click', function() {
         code = editor.getValue();
         const lines = code.split('\n');       
         const codeWithoutHead = lines.slice(11, -2).join('\n');
-        
-        console.log(codeWithoutHead)
 
-        dijkstra = new Function('vertexs', 'edges', 'distances', 'visited', 'predecessors', 'edgePath', 'startVertex', 'endVertex', codeWithoutHead);
+        // dijkstra = new Function('vertexs', 'edges', 'distances', 'visited', 'predecessors', 'edgePath', 'startVertex', 'endVertex', codeWithoutHead);
         
-        console.log(dijkstra.toString());
-
         validCode = true;
         play = false;
         this.style.backgroundColor = '#0000ff';        

@@ -30,7 +30,7 @@ for(let i = 0; i < 512; i++) {
     edges[i] = Array();
 }
 
-for(let i = 0; i < 500; i++) {
+for(let i = 0; i < 1000; i++) {
     points = []
     const [a, b] = getTwoUniqueNumbers();
 
