@@ -1,4 +1,4 @@
-import { TextureLoader, BackSide, MeshBasicMaterial, SphereGeometry } from 'three';
+import { TextureLoader, BackSide, MeshBasicMaterial, SphereGeometry, Mesh } from 'three';
 
 const loader = new TextureLoader();
 const texture = loader.load('path_to_your_image.jpg');
@@ -9,4 +9,4 @@ const material = new MeshBasicMaterial({
   side: BackSide
 });
 
-export const skySphere = new THREE.Mesh(geometry, material);
+export const skySphere = new Mesh(geometry, material);

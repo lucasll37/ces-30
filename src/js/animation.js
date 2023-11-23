@@ -1,5 +1,7 @@
 import { scene } from './scene';
-import { edges } from './objects/edges';
+import { edges } from './objects/edge';
+import { vertexs } from './objects/vertex';
+import { editor } from './utils/aceEditor';
 // import { rayCaster } from './rayCaster';
 // import { guiOptions } from './utils/gui';
 // import { sLightHelper } from './objects/helpers';
@@ -7,44 +9,73 @@ import { edges } from './objects/edges';
 import { camera } from './camera';
 import { renderer } from './render';
 import '../js/events' 
+import { pause, execute } from './events/control';
 
 let slider
 let valor
 let valorNumerico
 
-function hold(segundos) {
-    return new Promise(resolve => {
-        setTimeout(resolve, segundos * 3000);
-    });
+function sleep(seg) {
+
+    return new Promise(resolve => setTimeout(resolve, seg * 1000));
 }
 
-async function dfs(vertex) {
+// dfs = (n_vertex, renderer, scene, camera) => {
 
-    const slider = document.getElementById('speedControl');
-    const valor = slider.value;
-    const valorNumerico = parseInt(valor, 10);
+//     renderer.render( scene, camera );
 
-    for (const edge of edges[vertex]) {
-        if (edge.line.material.color.getHex() === 0x2e2e2e) {
+//     const slider = document.getElementById('speedControl');
+//     const valor = slider.value;
+//     const valorNumerico = parseInt(valor, 10);
 
-            console.log(`VERTICE ${vertex} -> ${edge.to}`);
+    
+//     for (const edge of edges[n_vertex]) {
+
+//         while (pause) {
+//             renderer.render( scene, camera );
+//         }
+
+//         vertexs[edge.to].material.color.set(0xa09db2);
+
+//         if (edge.line.material.color.getHex() === 0x2e2e2e) {
+
+//             console.log(`VERTICE ${n_vertex} -> ${edge.to}`);
             
-            edge.line.material.color.set(0xffffff);
-            edge.line.material.linewidth = 1;
+//             edge.line.material.color.set(0xffffff);
+//             edge.line.material.linewidth = 1;
 
-            renderer.render(scene, camera);
-            await hold(1/valorNumerico);
+            
+//             vertexs[edge.to].material.color.set(0xff0000);
+            
+//             renderer.render(scene, camera);
+//             sleep(1);
+//             console.log(`dfs`);
+//             dfs(edge.to, renderer, scene, camera);
 
-            await dfs(edge.to);
-        }
-    }
-}
+//         }
+//     }
 
+//     vertexs[n_vertex].material.color.set(0xffffff);
+
+// }
 
 
 export async function animation( time ) {
 
-    dfs(1)
+    if(execute) {
+        execute = false;
+        console.log(execute)
+
+        const code = editor.getValue();
+        try {
+            eval(code)
+            dfs();
+        }
+
+        catch (e) {
+            console.error('Ocorreu um erro durante a execução do código:', e);
+        }
+    }
 
 
 	// rayCaster.setFromCamera(mousePosition, camera);

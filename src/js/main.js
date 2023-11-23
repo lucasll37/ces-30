@@ -8,5 +8,4 @@ import './utils/aceEditor'
 
 const orbit = new OrbitControls(camera, renderer.domElement)
 orbit.update()
-
 renderer.setAnimationLoop(animation)

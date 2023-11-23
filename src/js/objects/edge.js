@@ -1,4 +1,4 @@
-import { vertex } from './vertex.js';
+import { vertexs } from './vertex.js';
 
 import {LineBasicMaterial,
     Vector3,
@@ -9,21 +9,18 @@ import {LineBasicMaterial,
 
 
 function getTwoUniqueNumbers() {
-let numberSet = new Set();
+    let numberSet = new Set();
 
-while (numberSet.size < 2) {
-    let randomNumber = Math.floor(Math.random() * 512);
-    numberSet.add(randomNumber);
+    while (numberSet.size < 2) {
+        let randomNumber = Math.floor(Math.random() * 512);
+        numberSet.add(randomNumber);
+    }
+
+    return [...numberSet];
 }
 
-return [...numberSet];
-}
-
-let matrix1 = new Matrix4()
-let matrix2 = new Matrix4()
 let points
 let edge
-let position = new Vector3()
 let geometryEdge
 let materialEdge
 
@@ -35,26 +32,20 @@ for(let i = 0; i < 512; i++) {
     edges[i] = Array();
 }
 
-for(let i = 0; i < 300; i++) {
+for(let i = 0; i < 1000; i++) { // 300
     points = []
     const [a, b] = getTwoUniqueNumbers();
 
-    vertex.getMatrixAt(a, matrix1);
-    vertex.getMatrixAt(b, matrix2);
-
-    matrix1.decompose(position, new Quaternion(), new Vector3());
-
     points.push(new Vector3(
-        position.x,
-        position.y,
-        position.z
+        vertexs[a].position.x,
+        vertexs[a].position.y,
+        vertexs[a].position.z
     ));
     
-    matrix2.decompose(position, new Quaternion(), new Vector3());
     points.push(new Vector3(
-        position.x,
-        position.y,
-        position.z
+        vertexs[b].position.x,
+        vertexs[b].position.y,
+        vertexs[b].position.z
     ));
 
     geometryEdge = new BufferGeometry().setFromPoints(points);
@@ -79,3 +70,4 @@ for(let i = 0; i < 300; i++) {
 
     uniqueEdges.push(edge)
 }
+
