@@ -17,7 +17,7 @@ for(let i = -4; i < 4; i++) {
 
             vertexGeometry = new SphereGeometry(1);
             vertexMaterial = new MeshStandardMaterial(
-                {color: 0xff00ff}
+                {color: 0x808080}
             );
 
             vertex = new Mesh(vertexGeometry, vertexMaterial);

@@ -9,4 +9,4 @@ export const camera = new PerspectiveCamera(
 	1000
 );
 	
-camera.position.set(35, 40, 80)
+camera.position.set(45, 60, 90)

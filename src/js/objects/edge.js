@@ -2,8 +2,6 @@ import { vertexs } from './vertex.js';
 
 import {LineBasicMaterial,
     Vector3,
-    Matrix4,
-    Quaternion,
     BufferGeometry,
     Line } from 'three';
 
@@ -32,7 +30,7 @@ for(let i = 0; i < 512; i++) {
     edges[i] = Array();
 }
 
-for(let i = 0; i < 1000; i++) { // 300
+for(let i = 0; i < 500; i++) {
     points = []
     const [a, b] = getTwoUniqueNumbers();
 
@@ -51,8 +49,8 @@ for(let i = 0; i < 1000; i++) { // 300
     geometryEdge = new BufferGeometry().setFromPoints(points);
     
     materialEdge = new LineBasicMaterial({
-        color: 0x2e2e2e,
-        linewidth: 1
+        color: 0x505050,
+        opacity: 0.5
     });
 
     edge = new Line(geometryEdge, materialEdge);

@@ -1,86 +1,69 @@
 import { scene } from './scene';
 import { edges } from './objects/edge';
 import { vertexs } from './objects/vertex';
-import { editor } from './utils/aceEditor';
-// import { rayCaster } from './rayCaster';
+import { rayCaster } from './rayCaster';
 // import { guiOptions } from './utils/gui';
 // import { sLightHelper } from './objects/helpers';
-// import { mousePosition } from './events/mousePosition';
 import { camera } from './camera';
 import { renderer } from './render';
-import '../js/events' 
-import { pause, execute } from './events/control';
+import { speed, validCode, play, dijkstra } from './events/control';
+import { mousePosition } from './events/mousePosition';
+import './events/resizeWindow'
+// import './events/mousePosition'
 
-let slider
-let valor
-let valorNumerico
 
-function sleep(seg) {
+let lastTimestamp = 0;
+let delta;
+let index;
+let startVertex = 0;
+let endVertex= 450;
+const distances = Array(vertexs.length).fill(Infinity);
+distances[startVertex] = 0;
+const visited = new Set();
+const predecessors = Array(vertexs.length).fill(null);
+const edgePath = Array(vertexs.length).fill(null);
+let finished;
 
-    return new Promise(resolve => setTimeout(resolve, seg * 1000));
-}
+vertexs[startVertex].material.color.setHex(0x00ff00);
+vertexs[endVertex].material.color.setHex(0xff0000);
 
-// dfs = (n_vertex, renderer, scene, camera) => {
+export async function animation( timestamp ) {
 
-//     renderer.render( scene, camera );
-
-//     const slider = document.getElementById('speedControl');
-//     const valor = slider.value;
-//     const valorNumerico = parseInt(valor, 10);
-
+    delta = (timestamp - lastTimestamp);
     
-//     for (const edge of edges[n_vertex]) {
+    if(validCode && play && !finished && delta > speed) {
+        lastTimestamp = timestamp;
 
-//         while (pause) {
-//             renderer.render( scene, camera );
-//         }
+        finished = dijkstra(vertexs, edges, distances, visited, predecessors, edgePath, startVertex, endVertex);
 
-//         vertexs[edge.to].material.color.set(0xa09db2);
+        if(finished) {
+            for (let at = endVertex; at != null; at = predecessors[at]) {
+                vertexs[at].material.color.set(0xff0000);
+            }
 
-//         if (edge.line.material.color.getHex() === 0x2e2e2e) {
-
-//             console.log(`VERTICE ${n_vertex} -> ${edge.to}`);
-            
-//             edge.line.material.color.set(0xffffff);
-//             edge.line.material.linewidth = 1;
-
-            
-//             vertexs[edge.to].material.color.set(0xff0000);
-            
-//             renderer.render(scene, camera);
-//             sleep(1);
-//             console.log(`dfs`);
-//             dfs(edge.to, renderer, scene, camera);
-
-//         }
-//     }
-
-//     vertexs[n_vertex].material.color.set(0xffffff);
-
-// }
-
-
-export async function animation( time ) {
-
-    if(execute) {
-        execute = false;
-        console.log(execute)
-
-        const code = editor.getValue();
-        try {
-            eval(code)
-            dfs();
-        }
-
-        catch (e) {
-            console.error('Ocorreu um erro durante a execução do código:', e);
+            for (let at = endVertex; at != null && edgePath[at] != null; at = edgePath[at].from) {
+                edgePath[at].line.material.color.set(0xff0000);
+            }
         }
     }
 
 
+    
+    
 	// rayCaster.setFromCamera(mousePosition, camera);
 	// const intersects = rayCaster.intersectObjects(scene.children);
-	// console.log(intersects)
+
+    // if (intersects.length > 0) {
+    //     var firstObject = intersects[0].object;
+
+    //     vertexs.forEach((vertex, ind) => {
+    //         if(vertex.uuid == firstObject.uuid) {
+    //             index = ind;
+    //         }
+    //     })
+    // }
+
+	// console.log(index)
 	
 	// sLightHelper.update();
 
