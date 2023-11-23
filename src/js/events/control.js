@@ -9,9 +9,9 @@ document.getElementById('executeButton').addEventListener('click', function() {
     play = false;
 
     try {
-        code = editor.getValue();
-        const lines = code.split('\n');       
-        const codeWithoutHead = lines.slice(11, -2).join('\n');
+        // code = editor.getValue();
+        // const lines = code.split('\n');       
+        // const codeWithoutHead = lines.slice(11, -2).join('\n');
 
         // dijkstra = new Function('vertexs', 'edges', 'distances', 'visited', 'predecessors', 'edgePath', 'startVertex', 'endVertex', codeWithoutHead);
         
