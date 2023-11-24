@@ -34,15 +34,15 @@ const defaultFunc = `dijkstra = (
 
     visited.add(currentVertex);
 
-    if (currentVertex !== endVertex && currentVertex !== startVertex) {
-        vertexs[currentVertex].material.color.set(0xffff00);
-    }
+    // if (currentVertex !== endVertex && currentVertex !== startVertex) {
+    //     vertexs[currentVertex].material.color.set(0xffffff);
+    // }
 
     for (const edge of edges[currentVertex]) {
 
         if (!visited.has(edge.to)) {
 
-            edge.line.material.color.set(0x808080);
+            edge.line.material.opacity = 0.3;
             let newDistance = distances[currentVertex] + 1;
 
             if (newDistance < distances[edge.to]) {

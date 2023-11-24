@@ -30,7 +30,7 @@ for(let i = 0; i < 512; i++) {
     edges[i] = Array();
 }
 
-for(let i = 0; i < 1000; i++) {
+for(let i = 0; i < 512; i++) {
     points = []
     const [a, b] = getTwoUniqueNumbers();
 
@@ -49,19 +49,23 @@ for(let i = 0; i < 1000; i++) {
     geometryEdge = new BufferGeometry().setFromPoints(points);
     
     materialEdge = new LineBasicMaterial({
-        color: 0x505050,
-        opacity: 0.5
+        color: 0xffffff,
+        opacity: 0.3
     });
+
+    materialEdge.transparent = true;
 
     edge = new Line(geometryEdge, materialEdge);
 
     edges[a].push({
+        "from": a,
         "to": b,
         "line": edge
     });
 
     
     edges[b].push({
+        "from": b,
         "to": a,
         "line": edge
     });
