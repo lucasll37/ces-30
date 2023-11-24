@@ -29,8 +29,6 @@ export function animation( timestamp ) {
 
         if(finished) {
 
-            console.log(edgePath);
-
             for (let at = endVertex; at != null; at = predecessors[at]) {
                 if (at !== endVertex && at !== startVertex) {
                     vertexs[at].material.color.set(0xff0000);
