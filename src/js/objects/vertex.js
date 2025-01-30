@@ -23,9 +23,9 @@ for(let i = -4; i < 4; i++) {
             vertex = new Mesh(vertexGeometry, vertexMaterial);
 
 
-            vertex.position.x = i * n + Math.random() * 5;
-            vertex.position.y = j * n + Math.random() * 5;
-            vertex.position.z = k * n + Math.random() * 5;
+            vertex.position.x = i * n;// + Math.random() * 5;
+            vertex.position.y = j * n;// + Math.random() * 5;
+            vertex.position.z = k * n;// + Math.random() * 5;
             
             vertexs.push(vertex);
         }
